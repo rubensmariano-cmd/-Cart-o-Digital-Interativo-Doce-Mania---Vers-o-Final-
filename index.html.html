@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doce Mania - Cartão Digital Luxo</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: radial-gradient(circle, #fff0f3 0%, #fde2e4 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .card-container {
+            width: 100%;
+            max-width: 420px;
+        }
+        
+        .card {
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px rgba(189, 74, 107, 0.25);
+            overflow: hidden;
+            border: 1px solid rgba(255, 182, 193, 0.4);
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, #a83258 0%, #d85c84 100%);
+            padding: 35px 20px 25px 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .logo-container {
+            background: white;
+            border-radius: 50%;
+            width: 110px;
+            height: 110px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border: 3px solid #fff;
+            cursor: pointer;
+        }
+        
+        .logo-container img {
+            width: 95px;
+            height: 95px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        .card-header h1 {
+            font-family: 'Playfair Display', serif;
+            color: #ffffff;
+            font-size: 38px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 3px;
+            text-shadow: 1px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .card-header p {
+            color: #fce4ec;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        
+        .slogan {
+            background: #fff8f9;
+            padding: 14px;
+            text-align: center;
+            font-family: 'Great Vibes', cursive;
+            font-size: 30px;
+            color: #b5375f;
+            border-bottom: 1px solid #fce4ec;
+        }
+        
+        .jingle-player-box {
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+            margin: 15px 20px;
+            padding: 12px 15px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: inset 0 2px 5px rgba(255,255,255,0.6);
+            border: 1px solid #f48fb1;
+        }
+        
+        .jingle-icon {
+            font-size: 24px;
+            background: #d85c84;
+            color: white;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(216,92,132,0.3);
+            flex-shrink: 0;
+        }
+        
+        .jingle-info {
+            flex-grow: 1;
+        }
+        
+        .jingle-info h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 14px;
+            color: #7a1f3c;
+            font-weight: 700;
+        }
+        
+        .jingle-info p {
+            font-size: 11px;
+            color: #9e4764;
+            margin-bottom: 5px;
+        }
+        
+        .jingle-player-box audio {
+            width: 100%;
+            height: 32px;
+            outline: none;
+        }
+        
+        .card-body {
+            padding: 20px 25px;
+        }
+        
+        .section {
+            margin-bottom: 22px;
+        }
+        
+        .section h3 {
+            color: #a83258;
+            font-family: 'Playfair Display', serif;
+            font-size: 17px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid #fce4ec;
+            padding-bottom: 5px;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        
+        .product-item {
+            background: #fff;
+            border: 1px solid #f8bbd0;
+            padding: 10px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.03);
+        }
+        
+        .product-item:hover {
+            transform: translateY(-4px);
+            border-color: #d85c84;
+            box-shadow: 0 8px 20px rgba(216, 92, 132, 0.15);
+        }
+        
+        .product-item img {
+            width: 75px;
+            height: 75px;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto 8px;
+            border: 2px solid #fce4ec;
+            transition: transform 0.2s;
+        }
+        
+        .product-item img:hover {
+            transform: scale(1.05);
+        }
+        
+        .product-item .name {
+            font-size: 12px;
+            color: #4a2c32;
+            font-weight: 600;
+        }
+        
+        .product-item .price {
+            font-size: 11px;
+            color: #d85c84;
+            font-weight: 700;
+            margin-top: 4px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 10px;
+        }
+        
+        .social-link {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .social-link:hover {
+            transform: scale(1.15);
+        }
+        
+        .whatsapp { background: linear-gradient(135deg, #25d366 0%, #128c7e 100%); color: white; }
+        .instagram { background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%); color: white; }
+        
+        .cta-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #a83258 0%, #d85c84 100%);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(168, 50, 88, 0.35);
+            cursor: pointer;
+            border: none;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(168, 50, 88, 0.45);
+        }
+        
+        .card-footer {
+            background: #faf2f4;
+            padding: 15px;
+            text-align: center;
+            font-size: 11px;
+            color: #886068;
+            border-top: 1px solid #fce4ec;
+        }
+        
+        .card-footer .address {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #613942;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        
+        .modal img {
+            max-width: 90%;
+            max-height: 80vh;
+            border-radius: 12px;
+            border: 3px solid #fff;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+        }
+
+        .modal-caption {
+            color: white;
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .confetti {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: #d85c84;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: confetti-fall 2.5s ease-in-out forwards;
+            z-index: 999;
+        }
+        
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container">
+        <div class="card" id="card">
+            <div class="card-header">
+                <div class="logo-container" onclick="openModal('https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&w=1000&q=80', 'Doce Mania - Logotipo')">
+                    <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&w=300&q=80" alt="Doce Mania Logo">
+                </div>
+                <h1>Doce Mania</h1>
+                <p>Doces & Pães Artesanais</p>
+            </div>
+            
+            <div class="slogan">
+                ✨ "Tão bom que contagia!" ✨
+            </div>
+            
+            <!-- Player do Jingle com o link direto configurado -->
+            <div class="jingle-player-box">
+                <div class="jingle-icon">🎵</div>
+                <div class="jingle-info">
+                    <h4>Nosso Jingle Oficial</h4>
+                    <p>Clique no play para ouvir!</p>
+                    <audio controls preload="metadata">
+                        <source src="https://docs.google.com/uc?export=download&id=1b1_o3Hvwg7OOhtTpgfAqEfELGYz-520Z" type="audio/mpeg">
+                        Seu navegador não suporta áudio.
+                    </audio>
+                </div>
+            </div>
+            
+            <div class="card-body">
+                <div class="section">
+                    <h3><span>🍰</span> Nossos Produtos em Destaque</h3>
+                    <div class="product-grid">
+                        <!-- 1. Brigadeiro -->
+                        <div class="product-item" onclick="openModal('brigadeiro.jpg', 'Brigadeiro Gourmet'); createConfetti(this);">
+                            <img src="brigadeiro.jpg" alt="Brigadeiro Gourmet">
+                            <div class="name">Brigadeiro Gourmet</div>
+                            <div class="price">R$ 2,50</div>
+                        </div>
+                        <!-- 2. Bento Cake -->
+                        <div class="product-item" onclick="openModal('bento_cake.jpg', 'Bento Cake'); createConfetti(this);">
+                            <img src="bento_cake.jpg" alt="Bento Cake">
+                            <div class="name">Bento Cake</div>
+                            <div class="price">R$ 35,00</div>
+                        </div>
+                        <!-- 3. Cookie -->
+                        <div class="product-item" onclick="openModal('cookie.jpg', 'Cookie Artesanal'); createConfetti(this);">
+                            <img src="cookie.jpg" alt="Cookie Artesanal">
+                            <div class="name">Cookie Artesanal</div>
+                            <div class="price">R$ 5,00</div>
+                        </div>
+                        <!-- 4. Pão Caseiro -->
+                        <div class="product-item" onclick="openModal('https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1000&q=80', 'Pão Caseiro'); createConfetti(this);">
+                            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=300&q=80" alt="Pão Caseiro">
+                            <div class="name">Pão Caseiro</div>
+                            <div class="price">R$ 12,00</div>
+                        </div>
+                        <!-- 5. Bolo no Pote -->
+                        <div class="product-item" onclick="openModal('bolo_pote.jpg', 'Bolo no Pote'); createConfetti(this);">
+                            <img src="bolo_pote.jpg" alt="Bolo no Pote">
+                            <div class="name">Bolo no Pote</div>
+                            <div class="price">R$ 22,00</div>
+                        </div>
+                        <!-- 6. Pão de Queijo -->
+                        <div class="product-item" onclick="openModal('https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=1000&q=80', 'Pão de Queijo'); createConfetti(this);">
+                            <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=300&q=80" alt="Pão de Queijo">
+                            <div class="name">Pão de Queijo</div>
+                            <div class="price">R$ 18,00</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3><span>💕</span> Redes Sociais</h3>
+                    <div class="social-links">
+                        <a href="https://wa.me/5543996982905?text=Olá! Vim pelo cartão digital e gostaria de fazer um pedido! 🍬" target="_blank" class="social-link whatsapp" title="WhatsApp">💬</a>
+                        <a href="https://instagram.com" target="_blank" class="social-link instagram" title="Instagram">📸</a>
+                    </div>
+                </div>
+                
+                <div class="cta-container">
+                    <button class="cta-button" onclick="window.open('https://wa.me/5543996982905?text=Olá! Vim pelo cartão digital e gostaria de fazer um pedido! 🍬', '_blank')">
+                        🍬 Fazer Pedido no WhatsApp
+                    </button>
+                </div>
+            </div>
+            
+            <div class="card-footer">
+                <p class="address">📍 Jaguariaíva, Paraná</p>
+                <p>Doce Mania © 2026 - Todos os direitos reservados</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para zoom da foto -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="modal-close">&times;</span>
+        <img id="modalImg" src="" alt="Foto Ampliada">
+        <div id="modalCaption" class="modal-caption"></div>
+    </div>
+    
+    <script>
+        function openModal(imgSrc, captionText) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImg');
+            const modalCaption = document.getElementById('modalCaption');
+            
+            modal.style.display = 'flex';
+            modalImg.src = imgSrc;
+            modalCaption.innerText = captionText;
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+
+        function createConfetti(element) {
+            const colors = ['#a83258', '#d85c84', '#ffb6c1', '#ffd700', '#ff69b4'];
+            const rect = element.getBoundingClientRect();
+            const x = rect.left + rect.width / 2;
+            const y = rect.top + rect.height / 2;
+            
+            for (let i = 0; i < 10; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = x + 'px';
+                confetti.style.top = y + 'px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => confetti.remove(), 2500);
+            }
+        }
+    </script>
+</body>
+</html>
